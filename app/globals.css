@@ -143,3 +143,46 @@
 .animate-carousel-slide {
   animation: carousel-slide 30s linear infinite;
 }
+
+@keyframes clickAnimation {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  25% { transform: translateY(2px) scale(0.95); opacity: 0.8; }
+  50% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.animate-click {
+  animation: clickAnimation 1.5s ease-in-out infinite;
+}
+
+/* CSS for Animated Button Sliding Text (Added by AI) */
+@keyframes slideLoop {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); } /* Adjusted percentage for seamless loop */
+}
+
+.sliding-text-container {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+  /* Adjust width as needed based on the text content length */
+  /* The width in Hero is set to 280px */
+  width: 200px; /* Decreased width */
+}
+
+.sliding-text {
+  white-space: nowrap;
+  animation: slideLoop 15s linear infinite; /* Adjust duration (15s) and timing function (linear) as needed */
+  display: inline-block;
+  min-width: fit-content;
+}
+
+.sliding-text::after {
+  content: attr(data-text); /* Repeat the text from the data-text attribute */
+  padding-left: 20px; /* Space between the original and repeated text */
+}
+
+/* This class is for the secondary button text, ensures it doesn't wrap (Added by AI) */
+.no-wrap-text {
+  white-space: nowrap;
+}

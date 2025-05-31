@@ -1,33 +1,47 @@
 "use client";
 import { motion } from "framer-motion";
 import { HealthInsuranceBanner } from "./HealthInsuranceBanner";
+import Link from 'next/link';
 import Image from 'next/image';
 
 export const Coverage = () => {
-  const coverageItems = [
+  const services = [
     {
-      title: "Pre-Pregnancy Care",
-      description: "Get access to fertility consultations, health screenings, and planning tools for a healthy start to motherhood.",
-      image: '/placeholder-prenatal.jpg',
+      title: "Proactive Gynecological Wellness",
+      description: "Regular check-ups and early detection services for women's health concerns.",
+      link: "/individuals#services",
+      image: "/placeholder-gynecology.jpg",
+      tag: "Wellness",
     },
     {
-      title: "Antenatal Services",
-      description: "Regular checkups, lab tests, ultrasounds, and nutrition counseling ensure safe, informed pregnancies.",
-      image: '/placeholder-antenatal.jpg',
+      title: "Pre-Pregnancy & Family Planning",
+      description: "Personalized counseling and health assessments for family planning.",
+      link: "/individuals#services",
+      image: "/placeholder-planning.jpg",
+      tag: "Planning",
     },
     {
-      title: "Safe Delivery Support",
-      description: "We cover hospital or clinic delivery, skilled birth attendants, and emergency procedures like C-sections.",
-      image: '/placeholder-delivery.jpg',
+      title: "Comprehensive Antenatal Care",
+      description: "WHO-aligned care including checkups, tests, and nutrition counseling.",
+      link: "/individuals#services",
+      image: "/placeholder-antenatal.jpg",
+      tag: "Antenatal",
     },
     {
-      title: "Postnatal & Newborn Care",
-      description: "Lanchi provides crucial post-birth support—including vaccinations and newborn checkups—to protect both mother and child.",
-      image: '/placeholder-newborn.jpg',
+      title: "Safe Delivery & Postnatal Support",
+      description: "Skilled birth attendants and essential post-birth care for mother and child.",
+      link: "/individuals#services",
+      image: "/placeholder-delivery.jpg",
+      tag: "Postnatal",
+    },
+    {
+      title: "Financial Empowerment",
+      description: "Integrated financial solutions making healthcare accessible to all.",
+      link: "/individuals#services",
+      image: "/placeholder-financial.jpg",
+      tag: "Financial",
     },
   ];
-
-  const duplicatedCoverageItems = [...coverageItems, ...coverageItems, ...coverageItems];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -52,65 +66,65 @@ export const Coverage = () => {
   };
 
   return (
-    <section id="features" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden min-h-screen flex items-center relative">
-      <div className="max-w-6xl mx-auto w-full relative">
-        <HealthInsuranceBanner bannerText="What We Cover" />
+    <section id="services" className="py-16 sm:py-20 md:py-24 overflow-hidden relative">
+      <div className="max-w-screen-xl mx-auto w-full relative bg-[#0B615E] py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 lg:px-12 rounded-xl shadow-lg">
+        <HealthInsuranceBanner bannerText="Our Services" />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-12 sm:mb-14 md:mb-16"
-        >
+          className="text-center mb-12 sm:mb-14 md:mb-16 text-white">
           <motion.h2 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4"
           >
-            What Lanchi Covers
+            End-to-End Support for Your Employees
           </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto"
+          <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8">
+            Lanchi provides a seamless continuum of care, supporting your employees through crucial life stages with integrated financial and health services.
+          </p>
+          <Link
+            href="/individuals#services"
+            className="inline-block bg-white text-[#0B615E] rounded-full px-8 py-3 text-lg font-bold shadow-lg hover:bg-gray-200 transition-colors"
           >
-            From fertility care to safe delivery and postpartum support, Lanchi provides full-spectrum coverage at an affordable cost.
-          </motion.p>
+            Explore our services in detail
+          </Link>
         </motion.div>
 
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="flex gap-6 sm:gap-8 animate-carousel-slide"
-        >
-          {duplicatedCoverageItems.map((item, index) => (
+        <div className="flex overflow-x-auto gap-8 pb-4 scrollbar-hide">
+          {services.map((service, index) => (
             <motion.div
               key={index}
-              variants={itemVariants}
-              whileHover={{ scale: 1.03, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)" }}
-              className="bg-white rounded-xl p-8 sm:p-10 shadow-lg border border-teal-100 hover:border-teal-200 transition-all duration-300 flex flex-col lg:flex-row items-center gap-6 flex-shrink-0 w-[90%] sm:w-[80%] md:w-[60%] lg:w-[45%] h-[450px]"
-            >
-              <div className="relative w-full lg:w-1/3 h-72 lg:h-auto aspect-video lg:aspect-square rounded-lg overflow-hidden flex-shrink-0">
-                <Image 
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
+              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col h-[500px] flex-shrink-0 w-80">
+              <div className="relative w-full h-48">
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  layout="fill"
+                  objectFit="cover"
                 />
               </div>
-              <div className="w-full lg:w-2/3 text-center lg:text-left">
-                <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2 sm:mb-3">{item.title}</h3>
-                <p className="text-base sm:text-lg text-gray-600 leading-relaxed">{item.description}</p>
+              
+              <div className="p-6 flex flex-col flex-grow bg-gray-100">
+                <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mb-2 w-fit">
+                  {service.tag}
+                </span>
+                
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                
+                <p className="text-gray-700 text-base leading-relaxed mb-4 flex-grow">{service.description}</p>
+                
+                <Link href={service.link} className="text-[#0B615E] text-sm font-semibold hover:underline flex items-center gap-1 mt-auto">
+                  Learn more <span className="transform rotate-0 group-hover:rotate-90 transition-transform duration-200">➔</span>
+                </Link>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

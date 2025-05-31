@@ -1,136 +1,115 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 
-export const Navbar = () => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(0);
+const Navbar = () => {
+  const [open, setOpen] = useState(false);
+  const [show, setShow] = useState(true);
+  const lastScrollY = useRef(0);
+  const router = useRouter();
 
   useEffect(() => {
-    // Set initial window width
-    setWindowWidth(window.innerWidth);
-    
-    // Update window width on resize
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Debug log to see what's happening
+      console.log('Scroll position:', currentScrollY, 'Last scroll:', lastScrollY.current);
+      
+      if (currentScrollY > lastScrollY.current) {
+        // Scrolling down
+        setShow(false);
+      } else {
+        // Scrolling up
+        setShow(true);
+      }
+      
+      lastScrollY.current = currentScrollY;
     };
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
     
-    window.addEventListener('resize', handleResize);
+    // Initial scroll position
+    lastScrollY.current = window.scrollY;
     
-    // Clean up event listener
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  // Define the getContactButtonSize function
-  const getContactButtonSize = () => {
-    if (windowWidth < 640) {
-      return { width: '100px', height: '32px' };
-    } else if (windowWidth < 768) {
-      return { width: '120px', height: '36px' };
+  const handleNavigation = (path: string, e?: React.MouseEvent) => {
+    if (path.startsWith('/')) { // Check if it's an anchor link
+       e?.preventDefault(); // Prevent default anchor jump
+      const targetId = path.substring(1); // Get the ID without the #
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+         setOpen(false); // Close mobile menu after clicking
+      } else {
+        router.push(path); // Navigate to different page if element not found
+         setOpen(false); // Close mobile menu
+      }
     } else {
-      return { width: '140px', height: '40px' };
+       router.push(path); // For external links or full path navigation
+       setOpen(false); // Close mobile menu
     }
   };
 
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    router.push('/'); // Still navigate to home page URL
+    setOpen(false); // Close mobile menu
+  };
+
   return (
-    <motion.nav
-      initial={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      className="fixed z-50 w-full px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4"
-    >
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
-        {/* Logo at top left */}
-        <Link href="/">
-          <Image
-            src="/logo.svg"
-            alt="Lanchi Logo"
-            width={120}
-            height={40}
-            priority
-            className="w-20 sm:w-24 md:w-28 lg:w-32 h-auto"
-          />
-        </Link>
-
-        <div className="flex items-center justify-end">
-          {/* Mobile menu button - only visible on small screens */}
-          <button
-            className="md:hidden bg-white/10 backdrop-blur-xl rounded-lg p-1.5 sm:p-2 border border-white/20 mr-2 sm:mr-3 shadow-lg"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
-            </svg>
-          </button>
-
-          {/* Navigation Menu with enhanced frosted glass effect */}
-          <div
-            className={`flex flex-col md:flex-row items-center bg-transparent transition-all duration-300 ${
-              isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible md:opacity-100 md:visible'
-            } absolute md:relative top-14 sm:top-16 right-4 md:top-0 md:right-0 w-[calc(100%-2rem)] md:w-auto`}
-          >
-            <div className="flex flex-col md:flex-row items-center p-1.5 sm:p-2 lg:p-3 w-full md:w-auto">
-              <Link href="#features" className="relative group px-2.5 py-1.5 text-sm text-white font-medium flex items-center gap-1.5 bg-zinc-800/80 rounded-md hover:bg-zinc-800/90 transition-colors duration-500 w-full md:w-auto text-center mb-2 md:mb-0 shadow-md border border-zinc-900">
-                <span className="font-medium">WHAT WE COVER</span>
-              </Link>
-
-              <Link href="#why-stand-out" className="px-2.5 py-1.5 text-sm text-white font-medium bg-zinc-800/80 rounded-md mx-0 md:mx-1.5 lg:mx-2 hover:bg-zinc-800/90 transition-colors duration-500 w-full md:w-auto text-center mb-2 md:mb-0 shadow-md border border-zinc-900">
-                WHY WE STAND OUT
-              </Link>
-
-              <Link href="#target-audience" className="px-2.5 py-1.5 text-sm text-white font-medium bg-zinc-800/80 rounded-md hover:bg-zinc-800/90 transition-colors duration-500 w-full md:w-auto text-center mb-2 md:mb-0 shadow-md border border-zinc-900">
-                WHO IS FOR US
-              </Link>
-
-              {/* Divider line - horizontal for mobile, vertical for desktop */}
-              <div className="h-px w-full md:h-6 md:w-px bg-zinc-700 my-1.5 md:my-0 md:mx-1.5 lg:mx-2 border-r border-zinc-900"></div>
-
-              <Link
-                href="/contact"
-                className="relative overflow-hidden w-full md:w-auto mb-2 md:mb-0"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-              >
-                <div 
-                  className={`flex items-center justify-center rounded-full transition-colors duration-700 shadow-md border ${isHovered ? 'bg-teal-500 border-teal-600' : 'bg-zinc-800/80 border-zinc-900'} relative`} 
-                  style={getContactButtonSize()}
-                >
-                  <motion.div 
-                    className={`rounded-full ${windowWidth < 640 ? 'w-6 h-6' : windowWidth < 768 ? 'w-7 h-7' : 'w-8 h-8'} flex items-center justify-center transition-colors duration-700 border ${isHovered ? 'bg-black border-black' : 'bg-teal-500 border-teal-600'} absolute left-1`}
-                    initial={{ x: 0 }}
-                    animate={{ x: isHovered ? (windowWidth < 640 ? 60 : windowWidth < 768 ? 80 : 100) : 0 }}
-                    transition={{ type: "spring", stiffness: 100, damping: 15, duration: 0.8 }}
-                  >
-                    <svg className={`${windowWidth < 640 ? 'w-3 h-3' : windowWidth < 768 ? 'w-3.5 h-3.5' : 'w-4 h-4'} transition-colors duration-700 text-white`} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M13 5L20 12L13 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </motion.div>
-                  <motion.span 
-                    className={`font-medium uppercase ${windowWidth < 640 ? 'text-xs' : windowWidth < 768 ? 'text-sm' : 'text-base'} ${isHovered ? 'text-black' : 'text-white'} absolute`}
-                    initial={{ x: 0 }}
-                    animate={{ 
-                      x: isHovered ? 
-                        (windowWidth < 640 ? -15 : windowWidth < 768 ? -20 : -25) : 
-                        0 
-                    }}
-                    transition={{ type: "spring", stiffness: 100, damping: 15, duration: 0.8 }}
-                  >
-                    CONTACT
-                  </motion.span>
-                </div>
-              </Link>
-            </div>
-          </div>
+    <nav className={`fixed top-4 left-1/2 -translate-x-1/2 w-[95vw] max-w-6xl z-50 flex items-center justify-between px-6 py-3 rounded-2xl shadow-xl bg-white/80 backdrop-blur-md border border-white/40 transition-transform duration-300 ${!show ? '-translate-y-32 opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'}`}>
+      {/* Logo */}
+      <button onClick={handleLogoClick} className="flex items-center gap-2">
+        <Image
+          src="/logo.svg"
+          alt="Lanchi Logo"
+          width={140}
+          height={48}
+          priority
+          className="w-36 h-auto drop-shadow"
+        />
+      </button>
+      {/* Desktop Nav */}
+      <div className="hidden md:flex items-center">
+        <div className="flex space-x-3 md:space-x-4 lg:space-x-5 xl:space-x-6 mr-3 md:mr-4 lg:mr-5">
+          <button onClick={() => handleNavigation('/employers')} className="text-[#0B615E] text-xs sm:text-sm lg:text-base font-semibold hover:text-[#089688] transition whitespace-nowrap">For Employers</button>
+          <button onClick={() => handleNavigation('/individuals')} className="text-[#0B615E] text-xs sm:text-sm lg:text-base font-semibold hover:text-[#089688] transition whitespace-nowrap">For Individuals</button>
+          <button onClick={(e) => handleNavigation('#features', e)} className="text-[#0B615E] text-xs sm:text-sm lg:text-base font-semibold hover:text-[#089688] transition whitespace-nowrap">What We Cover</button>
+          <button onClick={(e) => handleNavigation('#why-stand-out', e)} className="text-[#0B615E] text-xs sm:text-sm lg:text-base font-semibold hover:text-[#089688] transition whitespace-nowrap">Why We Stand Out</button>
         </div>
+        <Link href="/contact" className="px-3 lg:px-6 py-1.5 lg:py-2 rounded-full bg-[#0B615E] text-white text-xs sm:text-sm lg:text-base font-bold shadow hover:bg-[#089688] transition whitespace-nowrap inline-block">Get Started</Link>
       </div>
-    </motion.nav>
+      {/* Mobile Hamburger */}
+      <button
+        className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-full hover:bg-[#A7FFEB]/40 transition z-20"
+        onClick={() => setOpen((v) => !v)}
+        aria-label="Open navigation menu"
+      >
+        <span className={`block w-6 h-0.5 bg-[#0B615E] mb-1 transition-all ${open ? 'rotate-45 translate-y-1.5' : ''}`}></span>
+        <span className={`block w-6 h-0.5 bg-[#0B615E] mb-1 transition-all ${open ? 'opacity-0' : ''}`}></span>
+        <span className={`block w-6 h-0.5 bg-[#0B615E] transition-all ${open ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+      </button>
+      {/* Mobile Menu */}
+      {open && (
+        <div className="fixed inset-0 bg-black/30 z-40" onClick={() => setOpen(false)} />
+      )}
+      <div className={`fixed top-0 right-0 w-64 h-full bg-white/95 shadow-2xl z-50 flex flex-col items-start gap-8 px-8 py-20 transition-transform duration-300 md:hidden ${open ? 'translate-x-0' : 'translate-x-full'}`}>
+        <button onClick={() => handleNavigation('/employers')} className="text-[#0B615E] text-lg font-semibold hover:text-[#089688] transition">For Employers</button>
+        <button onClick={() => handleNavigation('/individuals')} className="text-[#0B615E] text-lg font-semibold hover:text-[#089688] transition">For Individuals</button>
+        <button onClick={(e) => handleNavigation('#features', e)} className="text-[#0B615E] text-lg font-semibold hover:text-[#089688] transition">What We Cover</button>
+        <button onClick={(e) => handleNavigation('#why-stand-out', e)} className="text-[#0B615E] text-lg font-semibold hover:text-[#089688] transition">Why We Stand Out</button>
+        <Link href="/contact" className="mt-4 px-6 py-2 rounded-full bg-[#0B615E] text-white font-bold shadow hover:bg-[#089688] transition inline-block">Get Started</Link>
+      </div>
+    </nav>
   );
 };
 

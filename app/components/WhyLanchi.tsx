@@ -1,23 +1,27 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 
 export const WhyLanchi = () => (
-  <section id="why-stand-out" className="bg-white py-20 px-6 md:px-12 lg:px-24">
-    <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16 text-gray-900">🌟 Why Lanchi Stands Out</h2>
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      className="max-w-3xl mx-auto bg-gray-50 rounded-xl p-10 shadow-sm text-left"
-    >
-      <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-        Unlike typical insurance, Lanchi delivers end-to-end women&apos;s health support—from fertility to postpartum care—under one affordable plan.
-      </p>
-      <p className="text-lg text-gray-700 leading-relaxed">
-        It reflects HuluCares&apos; award-winning approach to gender-inclusive innovation and was honored with the <span className="font-semibold text-teal-600">Best African Gender-Based Product Award</span> by BimaLab Africa.
-      </p>
-    </motion.div>
+  <section id="why-lanchi" className="bg-white py-20 px-6 md:px-12 lg:px-24">
+    <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+      <div className="md:w-1/2">
+        <div className="h-2 w-24 bg-[#0B615E] mb-8" />
+      </div>
+
+      {/* Removed image and its container */}
+      {/* <div className="md:w-1/2">
+        <div className="relative w-full max-w-md h-64 md:h-80 rounded-[50%_30%] overflow-hidden shadow-xl border-4 border-white">
+          <Image
+            src="/placeholder-impact-image.jpg"
+            alt="Lanchi Impact"
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
+      </div> */}
+    </div>
   </section>
 );
 

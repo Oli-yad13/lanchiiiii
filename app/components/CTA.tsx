@@ -1,43 +1,42 @@
 "use client";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { HealthInsuranceBanner } from "./HealthInsuranceBanner";
+import Image from "next/image";
 
 export const CTA = () => {
   return (
-    <section id="get-started" className="py-20 px-6 md:px-12 lg:px-24 relative overflow-hidden">
-      <div className="max-w-4xl mx-auto text-center relative">
-        <HealthInsuranceBanner bannerText="Ready to Join" />
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-6">
+    <section id="cta" className="py-20 sm:py-24 md:py-32 px-6 md:px-12 lg:px-24 relative overflow-hidden bg-gray-50">
+      <div className="max-w-screen-xl mx-auto relative flex flex-col md:flex-row items-center gap-12">
+        
+        <div className="md:w-1/2 text-center md:text-left">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
             Ready to Join?
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-10 max-w-2xl mx-auto">
-            Whether you&apos;re planning a family or seeking better maternal care, Lanchi is here for you—with dignity, affordability, and care you can trust.
+          <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto md:mx-0">
+            Whether you're planning a family or seeking better maternal care, Lanchi is here for you—with dignity, affordability, and care you can trust.
           </p>
-
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <motion.a
-              href="/contact"
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
-                transition: { duration: 0.2 }
-              }}
-              className="inline-block bg-teal-500 text-white rounded-md px-8 py-4 text-lg font-semibold shadow hover:bg-teal-600 transition-colors duration-200"
+          <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+            <a
+              href="#get-started"
+              className="inline-block bg-[#0B615E] text-white rounded-md px-8 py-4 text-lg font-semibold shadow hover:bg-[#0e7c74] transition mb-4"
             >
               Get Started Today
-            </motion.a>
-            <Link href="/contact" className="w-full sm:w-auto inline-block border border-teal-500 text-teal-600 dark:text-teal-400 rounded-lg px-8 sm:px-10 py-4 text-lg font-semibold shadow-lg hover:bg-teal-50 dark:hover:bg-gray-800 transition text-center">
-              Talk to a Lanchi Agent
-            </Link>
+            </a>
+            <div className="text-gray-500 text-base mt-4">
+              Or talk to a Lanchi Agent in your community.
+            </div>
           </div>
-        </motion.div>
+        </div>
+
+        <div className="md:w-1/2 relative h-80 md:h-[450px] rounded-lg overflow-hidden">
+           <Image
+             src="/Waiting-Room_1_.jpg"
+             alt="Waiting room scene"
+             layout="fill"
+             objectFit="cover"
+           />
+        </div>
+
       </div>
     </section>
   );

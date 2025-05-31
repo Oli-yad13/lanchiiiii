@@ -20,9 +20,7 @@ const ContactPage = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission logic here (e.g., send data to an API)
     console.log('Form submitted:', formData);
-    // Reset form after submission
     setFormData({
       name: '',
       email: '',
@@ -33,138 +31,183 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
-      <div className="max-w-6xl w-full flex flex-col md:flex-row gap-12 md:gap-24">
+    <div className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <div className="bg-[#0B615E] text-white py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">Get in Touch</h1>
+            <p className="text-xl text-white/80 max-w-2xl mx-auto">
+              Ready to transform healthcare for your employees? Let's start the conversation.
+            </p>
+          </motion.div>
+        </div>
+      </div>
 
-        {/* Left Column: Contact Form */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex-1"
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Get in Touch
-          </h2>
-          <p className="text-base sm:text-lg text-gray-600 mb-8">
-            We look forward to hearing from you. Fill out the form, and our team
-            will get back to you promptly.
-          </p>
+      {/* Main Content */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-white rounded-2xl shadow-xl p-8"
+          >
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#0B615E] focus:border-transparent transition"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Enter your full name"
+                />
+              </div>
 
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">FULL NAME</label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                autoComplete="name"
-                required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
-                value={formData.name}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">EMAIL ADDRESS</label>
-              <input
-                id="email-address"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
-                value={formData.email}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="role" className="block text-sm font-medium text-gray-700">YOUR ROLE</label>
-              <select
-                id="role"
-                name="role"
-                required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
-                value={formData.role}
-                onChange={handleChange}
-              >
-                <option value="">Select your role</option>
-                {/* Add more role options here */}
-                <option value="individual">Individual</option>
-                <option value="organization">Organization</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div>
-              <label htmlFor="location" className="block text-sm font-medium text-gray-700">LOCATION</label>
-              <input
-                id="location"
-                name="location"
-                type="text"
-                autoComplete="street-address"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
-                value={formData.location}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700">MESSAGE</label>
-              <textarea
-                id="message"
-                name="message"
-                rows={4}
-                required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
-                value={formData.message}
-                onChange={handleChange}
-              ></textarea>
-            </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#0B615E] focus:border-transparent transition"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Enter your email address"
+                />
+              </div>
 
-            <div>
+              <div>
+                <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-1">Your Role</label>
+                <select
+                  id="role"
+                  name="role"
+                  required
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#0B615E] focus:border-transparent transition"
+                  value={formData.role}
+                  onChange={handleChange}
+                >
+                  <option value="">Select your role</option>
+                  <option value="employer">Employer</option>
+                  <option value="individual">Individual</option>
+                  <option value="healthcare">Healthcare Provider</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                <input
+                  id="location"
+                  name="location"
+                  type="text"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#0B615E] focus:border-transparent transition"
+                  value={formData.location}
+                  onChange={handleChange}
+                  placeholder="Enter your location"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  required
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#0B615E] focus:border-transparent transition"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell us about your needs"
+                ></textarea>
+              </div>
+
               <button
                 type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                className="w-full bg-[#0B615E] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#089688] transition duration-300"
               >
-                SUBMIT
+                Send Message
               </button>
-            </div>
-          </form>
-        </motion.div>
+            </form>
+          </motion.div>
 
-        {/* Right Column: Logo and Contact Info */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex-1 flex flex-col items-center md:items-start text-center md:text-left"
-        >
-          <Link href="/">
-            <Image
-              src="/logo.svg"
-              alt="Lanchi Logo"
-              width={150}
-              height={45}
-              className="mb-4"
-            />
-          </Link>
-          <div className="text-xl font-light text-gray-800 mb-8">
-            Health Insurance Designed <br /> for Ethiopian Women
-          </div>
+          {/* Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="space-y-12"
+          >
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h2>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-[#0B615E]/10 rounded-lg flex items-center justify-center">
+                    <svg className="w-6 h-6 text-[#0B615E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">Email</h3>
+                    <p className="text-gray-600">info@lanchi.africa</p>
+                  </div>
+                </div>
 
-          <div className="space-y-4">
-            <div>
-              <h4 className="text-sm font-medium text-gray-500">EMAIL</h4>
-              <p className="text-gray-800">info@lanchi.africa</p>
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-[#0B615E]/10 rounded-lg flex items-center justify-center">
+                    <svg className="w-6 h-6 text-[#0B615E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">Location</h3>
+                    <p className="text-gray-600">
+                      Hayahulet Mazoriya, Noah<br />
+                      Real Estate building, 6th floor<br />
+                      Addis Ababa, Ethiopia
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div>
-              <h4 className="text-sm font-medium text-gray-500">LOCATION</h4>
-              <p className="text-gray-800">Hayahulet Mazoriya, Noah</p>
-              <p className="text-gray-800">Real Estate building,</p>
-              <p className="text-gray-800">6th floor, Addis Ababa,</p>
-              <p className="text-gray-800">Ethiopia</p>
+
+            <div className="bg-gray-50 rounded-2xl p-8">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Why Contact Us?</h3>
+              <ul className="space-y-4">
+                <li className="flex items-start space-x-3">
+                  <svg className="w-6 h-6 text-[#0B615E] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-gray-600">Get personalized solutions for your workforce</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <svg className="w-6 h-6 text-[#0B615E] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-gray-600">Learn about our comprehensive healthcare coverage</span>
+                </li>
+                <li className="flex items-start space-x-3">
+                  <svg className="w-6 h-6 text-[#0B615E] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-gray-600">Schedule a demo of our platform</span>
+                </li>
+              </ul>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </div>
   );
