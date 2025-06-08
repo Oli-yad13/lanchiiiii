@@ -1,71 +1,102 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const GoalVision = () => {
+  const heading = "The Reality: How Health Gaps Impact Your Workforce";
+  const description = "These are not mere statistics; they are the daily realities for countless employees across Ethiopia, profoundly influencing their well-being and, crucially, your company's productivity. Lanchi is dedicated to addressing these challenges head-on, providing integrated financial and healthcare support rooted directly within our communities for a stronger, more resilient workforce.";
+
+  const stats = [
+    { label: "Pregnant women get 4+ antenatal care visits", value: "40%" },
+    { label: "Mothers access vital postnatal care after birth", value: "6.9%" },
+  ];
+
   return (
-    <section className="py-16 sm:py-20 md:py-24 bg-[#0B615E] text-white text-center">
-      <div className="max-w-4xl mx-auto px-4">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
-        >
-          The Reality: How Health Gaps Impact Your Ethiopian Workforce
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-lg sm:text-xl mb-12 max-w-2xl mx-auto"
-        >
-          Understanding the numbers shows the direct impact on your employees and business:
-        </motion.p>
+    <section className="bg-[#E8F5E9] py-24 px-6">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
-        {/* New Content based on user provided text */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }} // Animation triggers when 30% of the element is visible
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="text-left text-base sm:text-lg max-w-3xl mx-auto space-y-6"
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="text-gray-900"
         >
-          {/* Maternal Care Gaps & Business Impact */}
-          <div>
-            <h3 className="text-xl sm:text-2xl font-semibold mb-4">Maternal Care Gaps & Business Impact:</h3>
-            <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>Only 40% of pregnant women get the recommended 4+ antenatal care visits (and just 12% receive effective quality ANC).</li>
-              <li>A mere 6.9% of mothers access vital postnatal care after birth.</li>
-            </ul>
-            <p className="font-semibold mt-4">
-              This means for your business: Higher health risks for employees, longer recovery periods, leading to more absences and potential loss of skilled team members.
-            </p>
-          </div>
-
-          {/* Family Planning & Child Health Challenges & Business Impact */}
-          <div>
-            <h3 className="text-xl sm:text-2xl font-semibold mb-4 mt-8">Family Planning & Child Health Challenges & Business Impact:</h3>
-            <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>22% of women have an unmet need for family planning services.</li>
-              <li>Modern contraceptive use is only 35%.</li>
-              <li>The average fertility rate is 4.6 children per woman, leading to repeated health system demands.</li>
-              <li>For child healthcare, 51% of women face distance as a barrier, and 55% face cost barriers.</li>
-            </ul>
-             <p className="font-semibold mt-4">
-              This means for your business: Increased employee stress (financial and emotional), more days off for child-related care, and reduced focus at work.
-            </p>
-          </div>
-
-          {/* Lanchi's Solution */}
-          <div className="mt-12 pt-8 border-t border-white/30">
-            <h3 className="text-xl sm:text-2xl font-bold mb-4">Lanchi's Solution:</h3>
-            <p>
-              These aren't just statistics; they represent daily realities for many of your employees in Ethiopia, directly impacting their well-being and your company's productivity. Lanchi offers tangible solutions to mitigate these challenges by providing integrated financial and healthcare support right where it's needed most.
-            </p>
-          </div>
+          <div className="text-sm font-semibold text-gray-600 mb-2">In Ethiopia</div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            {heading}
+          </h2>
+          <p className="text-lg text-gray-700 leading-relaxed">
+            {description}
+          </p>
         </motion.div>
+
+        <div className="grid grid-cols-2 gap-4">
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="bg-[#246A6B] text-white p-6 rounded-lg flex items-center justify-center text-center font-semibold text-lg"
+          >
+            Health Gaps
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="bg-gray-100 text-gray-900 p-6 rounded-lg flex flex-col items-center justify-center text-center font-bold"
+          >
+            <h3 className="text-5xl mb-2">{stats[0].value}</h3>
+            <p className="text-sm text-gray-700">{stats[0].label}</p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="bg-gray-100 text-gray-900 p-6 rounded-lg flex flex-col items-center justify-center text-center font-bold"
+          >
+            <h3 className="text-5xl mb-2">{stats[1].value}</h3>
+            <p className="text-sm text-gray-700">{stats[1].label}</p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="relative w-full h-40 rounded-lg overflow-hidden"
+          >
+            <Image
+              src="/placeholder-image-green.jpg"
+              alt="Impact image"
+              fill
+              className="object-cover"
+            />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="relative w-full h-40 rounded-lg overflow-hidden col-span-1 sm:col-span-1 md:col-span-1"
+          >
+            <Image
+              src="/placeholder-image-dark-green.jpg"
+              alt="Impact image 2"
+              fill
+              className="object-cover"
+            />
+          </motion.div>
+
+        </div>
+
       </div>
     </section>
   );

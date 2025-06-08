@@ -13,7 +13,7 @@ export const Affordable = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            💸 Affordable & Accessible
+             Affordable & Accessible
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             We&apos;ve designed Lanchi to be accessible to all Ethiopian women, regardless of income or location.

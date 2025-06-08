@@ -2,9 +2,9 @@
 import { motion } from "framer-motion";
 
 const audience = [
-  { icon: "👩", label: "Women of reproductive age" },
-  { icon: "🤰", label: "Expectant mothers" },
-  { icon: "👨‍👩‍👧‍👦", label: "Iddir groups and families committed to gender equity" },
+  { icon: "", label: "Women of reproductive age" },
+  { icon: "", label: "Expectant mothers" },
+  { icon: "", label: "Iddir groups and families committed to gender equity" },
 ];
 
 export const Audience = () => (

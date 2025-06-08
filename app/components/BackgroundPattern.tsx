@@ -57,12 +57,13 @@ export const BackgroundPattern = () => {
       const size = Math.random() * 15 + 10; // Smaller random size between 10-25px
       const x = Math.random() * 100;
       const y = Math.random() * 100;
-      const delay = Math.random() * 5; // Varied animation delay
-      const duration = 6 + Math.random() * 6; // Increased and varied animation duration
-      const initialScale = 0.4 + Math.random() * 0.4; // Varied initial scale
-      const midScale = 0.8 + Math.random() * 0.5; // Varied mid-animation scale (inflated)
-      const finalScale = initialScale; // Deflate back to initial size
-      const opacity = 0.2 + Math.random() * 0.4; // Varied opacity
+      const delay = Math.random() * 5;
+      const duration = 6 + Math.random() * 6;
+      // Reduced scaling values
+      const initialScale = 0.9 + Math.random() * 0.1; // Changed from 0.4 + Math.random() * 0.4
+      const midScale = 1.0 + Math.random() * 0.1; // Changed from 0.8 + Math.random() * 0.5
+      const finalScale = initialScale;
+      const opacity = 0.2 + Math.random() * 0.4;
 
       bubbles.push({
         id: i,
@@ -75,8 +76,8 @@ export const BackgroundPattern = () => {
         midScale,
         finalScale,
         opacity,
-        colorStop1: `#${Math.floor(Math.random()*16777215).toString(16)}`, // Random color
-        colorStop2: `#${Math.floor(Math.random()*16777215).toString(16)}`, // Random color
+        colorStop1: `#${Math.floor(Math.random()*16777215).toString(16)}`,
+        colorStop2: `#${Math.floor(Math.random()*16777215).toString(16)}`,
       });
     }
     return bubbles;

@@ -71,9 +71,19 @@ const BigPictureCare = () => {
   const activeTab = tabs[activeIndex];
 
   return (
-    <section className="bg-white py-12 px-4">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
+    <section id="big-picture-care" className="bg-white py-12 px-4 w-full min-h-screen flex flex-col justify-center">
+      <style jsx>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none; /* Hide scrollbar for Chrome, Safari and Opera */
+        }
+
+        .hide-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+        }
+      `}</style>
+      <div className="max-w-7xl mx-auto w-full">
+        <div className="text-center py-12">
           <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
             How Lanchi Delivers Better Care
           </h2>
@@ -82,13 +92,12 @@ const BigPictureCare = () => {
           </p>
         </div>
 
-        {/* Tabs Navigation */}
-        <div className="flex justify-center border-b border-gray-200 mb-12 overflow-x-auto scrollbar-hide">
+        <div className="flex justify-start border-b border-gray-200 mb-12 overflow-x-auto hide-scrollbar px-4 sm:px-6 md:px-8 lg:px-12 w-full mx-auto max-w-7xl">
           {tabs.map((tab, index) => (
             <button
               key={tab.name}
               className={`px-6 py-3 text-lg font-semibold -mb-px border-b-2 ${activeIndex === index
-                  ? "border-[#0B615E] text-[#0B615E]"
+                  ? "border-[#378A8C] text-[#378A8C]"
                   : "border-transparent text-gray-600 hover:text-gray-800"}
               transition-colors duration-300 whitespace-nowrap`}
               onClick={() => handleTabClick(index)}
@@ -98,7 +107,6 @@ const BigPictureCare = () => {
           ))}
         </div>
 
-        {/* Tab Content with Image and Phone Mockup */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeIndex}
@@ -106,7 +114,7 @@ const BigPictureCare = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }} // Reduced vertical movement
             transition={{ duration: 0.5 }} // Slightly adjusted duration for subtlety
-            className="flex flex-col md:flex-row items-center gap-12 md:gap-24 py-8"
+            className="flex flex-col md:flex-row items-center gap-12 md:gap-24 py-8 w-full"
           >
             {/* Text Content (Left) */}
             <div className="md:w-1/2 w-full md:order-1">
@@ -114,7 +122,7 @@ const BigPictureCare = () => {
               <p className="text-lg text-gray-700 mb-6">{activeTab.description}</p>
               <Link
                 href={activeTab.link}
-                className="inline-flex items-center text-[#0B615E] font-semibold hover:text-[#089688] transition-colors"
+                className="inline-flex items-center text-[#378A8C] font-semibold hover:text-[#089688] transition-colors"
               >
                 Learn more
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

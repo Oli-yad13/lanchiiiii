@@ -68,14 +68,14 @@
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
   
   /* Aurora background variables */
   --white: #ffffff;
@@ -185,4 +185,61 @@
 /* This class is for the secondary button text, ensures it doesn't wrap (Added by AI) */
 .no-wrap-text {
   white-space: nowrap;
+}
+
+/* CSS for Animated Button Bottom-Up Fill (Added by AI) */
+.hover-fill-button {
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease-in-out; /* Smooth text color transition */
+  z-index: 1; /* Ensure button content is above pseudo-element */
+}
+
+.hover-fill-button::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0; /* Starts hidden */
+  transition: height 0.3s ease-in-out; /* Smooth fill animation */
+  z-index: -1; /* Position below button content */
+}
+
+/* Teal button, white fill on hover */
+.hover-fill-teal {
+  @apply text-white; /* Default text color */
+  background-color: #246A6B; /* Default background color */
+}
+
+.hover-fill-teal::before {
+  background-color: #ffffff; /* White fill color */
+}
+
+.hover-fill-teal:hover {
+  @apply text-[#246A6B]; /* Text color changes to teal on hover */
+}
+
+.hover-fill-teal:hover::before {
+  height: 100%; /* Fill from bottom up */
+}
+
+/* White button, teal fill on hover */
+.hover-fill-white {
+  @apply text-[#246A6B]; /* Default text color */
+  background-color: #ffffff; /* Default background color */
+  border: 2px solid #246A6B; /* Add border for definition */
+}
+
+.hover-fill-white::before {
+  background-color: #246A6B; /* Teal fill color */
+}
+
+.hover-fill-white:hover {
+  @apply text-white; /* Text color changes to white on hover */
+  border-color: #246A6B; /* Keep border color consistent or change as needed */
+}
+
+.hover-fill-white:hover::before {
+  height: 100%; /* Fill from bottom up */
 }

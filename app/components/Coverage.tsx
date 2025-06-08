@@ -1,6 +1,5 @@
 "use client";
 import { motion } from "framer-motion";
-import { HealthInsuranceBanner } from "./HealthInsuranceBanner";
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -66,15 +65,14 @@ export const Coverage = () => {
   };
 
   return (
-    <section id="services" className="py-16 sm:py-20 md:py-24 overflow-hidden relative">
-      <div className="max-w-screen-xl mx-auto w-full relative bg-[#0B615E] py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 lg:px-12 rounded-xl shadow-lg">
-        <HealthInsuranceBanner bannerText="Our Services" />
+    <section id="services" className="py-16 sm:py-20 md:py-24 overflow-hidden relative bg-[#246A6B] text-white">
+      <div className="max-w-screen-xl mx-auto w-full relative py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 lg:px-12 rounded-xl shadow-lg">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-12 sm:mb-14 md:mb-16 text-white">
+          className="text-center mb-12 sm:mb-14 md:mb-16">
           <motion.h2 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -89,7 +87,7 @@ export const Coverage = () => {
           </p>
           <Link
             href="/individuals#services"
-            className="inline-block bg-white text-[#0B615E] rounded-full px-8 py-3 text-lg font-bold shadow-lg hover:bg-gray-200 transition-colors"
+            className="inline-block bg-white text-[#246A6B] rounded-full px-8 py-3 text-lg font-bold shadow-lg hover:bg-gray-100 transition-colors"
           >
             Explore our services in detail
           </Link>
@@ -118,7 +116,7 @@ export const Coverage = () => {
                 
                 <p className="text-gray-700 text-base leading-relaxed mb-4 flex-grow">{service.description}</p>
                 
-                <Link href={service.link} className="text-[#0B615E] text-sm font-semibold hover:underline flex items-center gap-1 mt-auto">
+                <Link href={service.link} className="text-[#246A6B] text-sm font-semibold hover:underline flex items-center gap-1 mt-auto">
                   Learn more <span className="transform rotate-0 group-hover:rotate-90 transition-transform duration-200">➔</span>
                 </Link>
               </div>
