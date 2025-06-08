@@ -113,7 +113,7 @@ function App() {
           <div className="w-full md:w-[55%] md:ml-auto">
             <div className="relative w-full rounded-lg overflow-hidden h-64 sm:h-80 md:h-96">
               <Image
-                src="/mf/pexels-shvetsa-11369178.jpg"
+                src="/pexels-polina-tankilevitch-3875218.jpg"
                 alt="Fertility & Family Building"
                 fill
                 className="object-cover"
