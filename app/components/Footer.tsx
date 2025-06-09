@@ -12,6 +12,7 @@ export const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Contact Us</h4>
             <p className="text-gray-600 mb-2">hello@lanchi.et</p>
+            <p className="text-gray-600 mb-2">+251 909 882 288</p>
             <p className="text-gray-600">Addis Ababa, Ethiopia</p>
           </div>
 
