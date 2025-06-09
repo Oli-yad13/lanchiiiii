@@ -4,7 +4,10 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Image from 'next/image';
 import Link from 'next/link';
-import { supabase } from '../lib/supabase';
+import dynamic from 'next/dynamic';
+
+// Dynamically import Supabase client
+const supabasePromise = import('../lib/supabase').then(mod => mod.supabase);
 
 const ContactPage = () => {
   interface FormData {
@@ -120,6 +123,9 @@ const ContactPage = () => {
     setSubmitError(null);
     
     try {
+      // Get Supabase client
+      const supabase = await supabasePromise;
+      
       // Prepare the data for Supabase
       const contactData = {
         first_name: formData.firstName,
