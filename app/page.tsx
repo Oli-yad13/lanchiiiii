@@ -1,24 +1,25 @@
 "use client";
 
-import React from "react";
 import Hero from "./components/Hero";
-import TailoredSolutions from "./components/TailoredSolutions";
-import Partnering from "./components/Partnering";
-import BigPictureCare from "./components/BigPictureCare";
-import GoalVision from "./components/GoalVision";
+import ProblemSection from "./components/ProblemSection";
+import ThreePillarSolution from "./components/ThreePillarSolution";
+import EmployeeBenefits from "./components/EmployeeBenefits";
+import EmployerROI from "./components/EmployerROI";
+import HowItWorks from "./components/HowItWorks";
+import TrustedPartners from "./components/TrustedPartners";
 import CTA from "./components/CTA";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white text-gray-900">
+    <main>
       <Hero />
-      <TailoredSolutions />
-      <Partnering />
-      <BigPictureCare />
-      <GoalVision />
-      <div id="contact">
-        <CTA />
-      </div>
+      <ProblemSection />
+      <ThreePillarSolution />
+      <EmployeeBenefits />
+      <EmployerROI />
+      <HowItWorks />
+      <TrustedPartners />
+      <CTA />
     </main>
   );
 }

@@ -1,59 +1,132 @@
 "use client";
-import Image from "next/image";
+
 import Link from "next/link";
-import { motion } from "framer-motion";
 
-export const Footer = () => {
+const Footer = () => {
   return (
-    <footer className="bg-white text-gray-900">
-      <div className="container mx-auto py-12 px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Contact Info */}
-          <div>
-            <h4 className="font-semibold mb-4">Contact Us</h4>
-            <p className="text-gray-600 mb-2">hello@lanchi.et</p>
-            <p className="text-gray-600 mb-2">+251 909 882 288</p>
-            <p className="text-gray-600">Addis Ababa, Ethiopia</p>
+    <footer className="bg-white border-t border-gray-200">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12">
+        {/* Top section */}
+        <div className="py-16 grid grid-cols-1 md:grid-cols-12 gap-12">
+          {/* Brand */}
+          <div className="md:col-span-4">
+            <span
+              className="text-[22px] font-bold text-gray-900 tracking-tight block mb-5"
+              style={{ fontVariant: "small-caps" }}
+            >
+              lanchi
+            </span>
+            <p className="text-[15px] text-gray-400 leading-relaxed mb-6 max-w-xs">
+              A holistic financial and health wellness platform empowering
+              Ethiopia&apos;s workforce through integrated microsaving, microcredit,
+              and microinsurance solutions.
+            </p>
+            <div className="flex items-center gap-3">
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-900 transition-colors duration-300"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+              </a>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-900 transition-colors duration-300"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                </svg>
+              </a>
+            </div>
           </div>
 
-          {/* Who We Are */}
-          <div>
-            <h4 className="font-semibold mb-4">Who We Are</h4>
-            <ul className="space-y-2">
-              <li><Link href="/contact" className="text-gray-600 hover:text-teal-500 transition">Contact Us</Link></li>
-              <li><Link href="/employers" className="text-gray-600 hover:text-teal-500 transition">For Employers</Link></li>
-              <li><Link href="/individuals" className="text-gray-600 hover:text-teal-500 transition">For Individuals</Link></li>
+          {/* Navigate */}
+          <div className="md:col-span-2">
+            <h4 className="text-[13px] font-semibold uppercase tracking-[0.2em] text-gray-400 mb-6">
+              Navigate
+            </h4>
+            <ul className="space-y-3">
+              {[
+                { label: "Our Solution", href: "/solution" },
+                { label: "About", href: "/about" },
+                { label: "Impact", href: "/impact" },
+                { label: "FAQ", href: "/faq" },
+              ].map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-[15px] text-gray-500 hover:text-gray-900 transition-colors duration-300"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
-            
-          {/* Info */}
-          <div>
-            <h4 className="font-semibold mb-4">Info</h4>
-            <ul className="space-y-2">
-              <li><Link href="/benefits" className="text-gray-600 hover:text-teal-500 transition">Benefits</Link></li>
-              <li><Link href="#" className="text-gray-600 hover:text-teal-500 transition">Privacy Policy</Link></li>
-              <li><Link href="#" className="text-gray-600 hover:text-teal-500 transition">Terms of Use</Link></li>
+
+          {/* Company */}
+          <div className="md:col-span-2">
+            <h4 className="text-[13px] font-semibold uppercase tracking-[0.2em] text-gray-400 mb-6">
+              Company
+            </h4>
+            <ul className="space-y-3">
+              {[
+                { label: "Contact", href: "/contact" },
+                { label: "Privacy Policy", href: "/privacy" },
+                { label: "Terms of Use", href: "/terms" },
+              ].map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="text-[15px] text-gray-500 hover:text-gray-900 transition-colors duration-300"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
-            
-          {/* Download App (Coming Soon) */}
-          <div>
-            <h4 className="font-semibold mb-4">Download our app</h4>
-            <p className="text-gray-600 mb-4">Coming Soon!</p>
-            <div className="flex gap-4">
-              <Image src="/app-store-badge.svg" alt="Download on the App Store" width={120} height={35} />
-              <Image src="/google-play-badge.svg" alt="Get it on Google Play" width={120} height={35} />
+
+          {/* Contact */}
+          <div className="md:col-span-4">
+            <h4 className="text-[13px] font-semibold uppercase tracking-[0.2em] text-gray-400 mb-6">
+              Get in Touch
+            </h4>
+            <div className="space-y-3">
+              <a
+                href="mailto:hello@lanchi.et"
+                className="block text-[15px] text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                hello@lanchi.et
+              </a>
+              <a
+                href="tel:+251944131837"
+                className="block text-[15px] text-gray-400 hover:text-gray-900 transition-colors"
+              >
+                +251 944 131 837
+              </a>
+              <p className="text-[13px] text-gray-400 pt-2">
+                Noah Real Estate, 6th Floor,
+                <br />
+                Hayahulet Mazoriya, Addis Ababa
+              </p>
             </div>
           </div>
         </div>
-        
-        {/* Bottom legal and copyright */}
-        <div className="mt-12 pt-8 border-t border-gray-200 text-gray-500 text-sm flex flex-col sm:flex-row items-center sm:justify-between gap-2 sm:gap-4">
-          <p className="text-center sm:text-left">© 2025 Lanchi. All rights reserved.</p>
-          <div className="flex justify-center gap-4 flex-wrap">
-            <Link href="#" className="hover:underline">Terms</Link>
-            <Link href="#" className="hover:underline">Privacy</Link>
-          </div>
+
+        {/* Bottom bar */}
+        <div className="py-5 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-[13px] text-gray-400">
+            © 2026 Lanchi. A product of ID-NET. All rights reserved.
+          </p>
+          <p className="text-[13px] text-gray-300 uppercase tracking-wider">
+            Underwritten by Nib Insurance Company S.C.
+          </p>
         </div>
       </div>
     </footer>

@@ -1,79 +1,104 @@
 "use client";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useState, useRef } from 'react';
-import { HowItWorksStep } from "./HowItWorksStep";
 
-const howItWorksSteps = [
+import { motion } from "framer-motion";
+
+const steps = [
   {
-    title: "Sign Up/Get Access",
-    description: "Easily enroll through your employer or sign up as an individual.",
-    icon: "/placeholder-icon-1.svg", // Replace with actual icon path
-    bgColor: "bg-blue-50",
-    textColor: "text-gray-900",
+    number: "01",
+    title: "Seamless Digital Onboarding",
+    description:
+      "Using integrated e-KYC protocols, we pull data from national ID systems to enroll your entire workforce instantly — no physical forms required.",
   },
   {
-    title: "Connect with Your Guide",
-    description: "Get paired with a dedicated guide for personalized support.",
-    icon: "/placeholder-icon-2.svg", // Replace with actual icon path
-    bgColor: "bg-green-50",
-    textColor: "text-gray-900",
+    number: "02",
+    title: "Sachet Payment Model",
+    description:
+      "Premiums are structured for \"sachet\" consumption via payroll deduction or daily mobile wallet debits — just ETB 5.75 per day, ensuring radical affordability.",
   },
   {
-    title: "Access Care & Resources",
-    description: "Utilize integrated health and financial tools when you need them.",
-    icon: "/placeholder-icon-3.svg", // Replace with actual icon path
-    bgColor: "bg-yellow-50",
-    textColor: "text-gray-900",
-  },
-  {
-    title: "Achieve Well-being",
-    description: "Benefit from comprehensive support for better health and financial stability.",
-    icon: "/placeholder-icon-4.svg", // Replace with actual icon path
-    bgColor: "bg-purple-50",
-    textColor: "text-gray-900",
+    number: "03",
+    title: "72-Hour Claims Settlement",
+    description:
+      "Claims are initiated by uploading digital medical reports. ID-NET validates within 48 hours, Nib Insurance completes adjudication within 24 hours.",
   },
 ];
 
 const HowItWorks = () => {
-  const [hasMounted, setHasMounted] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  // Track scroll progress through the section
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
-
   return (
-    <section id="how-it-works" ref={ref} className="relative w-full min-h-[200vh]">
-      {/* Fixed Header that doesn't scroll */}
-      <div className="sticky top-0 py-16 sm:py-20 md:py-24 px-4 text-center bg-white z-50">
-        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-3 sm:mb-4">
-          How It Works
-        </h2>
-        <p className="text-xl sm:text-2xl text-gray-600 max-w-2xl mx-auto">
-          We've designed a simple process to help you get the care you need, when you need it.
-        </p>
-      </div>
+    <section id="how-it-works" className="relative bg-white py-28 md:py-36 px-6 md:px-12 overflow-hidden">
+      {/* Subtle dot pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 1px 1px, rgba(0,0,0,0.3) 1px, transparent 0)",
+          backgroundSize: "32px 32px",
+        }}
+      />
 
-      {/* Fixed position container for overlapping text */}
-      <div className="sticky top-[50%] left-0 right-0 h-[50vh] flex items-center justify-center overflow-visible z-20">
-        <div className="relative w-full max-w-4xl mx-auto h-full">
-          {howItWorksSteps.map((step, index) => (
-            <HowItWorksStep
-              key={step.title}
-              step={step}
-              index={index}
-              totalSteps={howItWorksSteps.length}
-              scrollYProgress={scrollYProgress}
-            />
+      <div className="relative z-10 max-w-[1600px] mx-auto">
+        {/* Header */}
+        <div className="text-center mb-16 md:mb-20">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="flex items-center justify-center gap-3 mb-6"
+          >
+            <div className="h-[1px] w-10 bg-gray-300" />
+            <span className="text-[13px] font-semibold uppercase tracking-[0.25em] text-gray-400">
+              How It Works
+            </span>
+            <div className="h-[1px] w-10 bg-gray-300" />
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-[clamp(2rem,4vw,3.5rem)] font-bold text-gray-900 leading-[1.1] tracking-[-0.02em] mb-5"
+          >
+            The digital rail
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed"
+          >
+            Powered by ID-NET for mass-market scale. From enrollment to claims
+            settlement, everything is digital.
+          </motion.p>
+        </div>
+
+        {/* Steps — three columns with borders */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+          {steps.map((step, i) => (
+            <motion.div
+              key={step.number}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.12 }}
+              className={`py-10 md:py-12 ${i < 2 ? "md:border-r border-gray-200 md:pr-10" : ""
+                } ${i > 0 ? "md:pl-10" : ""} border-t md:border-t-0 border-gray-200 first:border-t-0`}
+            >
+              <span className="text-[40px] md:text-[48px] font-bold text-gray-100 leading-none block mb-5">
+                {step.number}
+              </span>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                {step.title}
+              </h3>
+              <p className="text-[15px] text-gray-500 leading-relaxed">
+                {step.description}
+              </p>
+            </motion.div>
           ))}
         </div>
       </div>
-
     </section>
   );
 };

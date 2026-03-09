@@ -30,4 +30,4 @@ CREATE INDEX contact_submissions_created_at_idx ON contact_submissions (created_
 -- Create a secure view for admin dashboard (optional)
 CREATE VIEW contact_submissions_view AS
   SELECT * FROM contact_submissions
-  ORDER BY created_at DESC:
+  ORDER BY created_at DESC;
